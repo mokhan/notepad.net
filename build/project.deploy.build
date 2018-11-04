@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<project name="project.deployment">
+	<property name="assembly.config" value="${build.config.dir}\AssemblyInfo.cs" />
+
+	<property name="log4net.config" value="${build.config.dir}\log4net.config.xml" />
+	<property name="log.dir" value="${build.compile.dir}\logs"/>
+	<property name="log.file.name" value="${log.dir}\log.txt"/>
+	<property name="log.level" value="DEBUG"/>
+
+	<target name="copy.app.dependencies">
+		<copy todir="${build.compile.dir}" flatten="true">
+			<fileset basedir="${build.lib.dir}\app">
+				<include name="\**\*.dll" />
+			</fileset>
+		</copy>
+		<property name="target" value="${log4net.config}" />
+		<call target="expand.template.file" />
+		<copy file="${log4net.config}" tofile="${build.compile.dir}\log4net.config.xml" />
+	</target>
+
+	<target name="deploy">
+		<property name="target" value="${assembly.config}" />
+		<call target="expand.template.file" />
+
+		<call target="app.compile" />
+		<call target="copy.app.dependencies" />		
+	</target>
+	
+	<target name="run" depends="deploy">
+		<exec program="${build.compile.dir}\${app.output}" commandline="" />
+	</target>
+	
+</project>

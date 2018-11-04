@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2DB82691-BF15-4538-8C5E-6BF8F4F875A9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Notepad</RootNamespace>
+    <AssemblyName>Notepad</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\build\lib\app\castle\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy2, Version=2.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\build\lib\app\castle\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.MicroKernel, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\build\lib\app\castle\Castle.MicroKernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\build\lib\app\castle\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\build\lib\app\log4net\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit.Framework, Version=2.4.2.130, Culture=neutral, PublicKeyToken=5e72ecd30bc408d5">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\build\tools\mbunit\MbUnit.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.5.0.1, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\build\lib\test\rhino.mocks\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataAccess\Repositories\DefaultRepository.cs" />
+    <Compile Include="DataAccess\Repositories\DefaultRepositorySpecs.cs" />
+    <Compile Include="Domain\FileSystem\AbsoluteFilePath.cs" />
+    <Compile Include="Domain\FileSystem\IFilePath.cs" />
+    <Compile Include="Infrastructure\Container\Windsor\IComponentExclusionSpecification.cs" />
+    <Compile Include="Infrastructure\Extensions\LoggingExtensions.cs" />
+    <Compile Include="Presentation\Presenters\Commands\IRunPresenterCommand.cs" />
+    <Compile Include="Presentation\Presenters\Commands\RunPresenterCommandSpecs.cs" />
+    <Compile Include="Presentation\Model\Menu\File\Commands\SaveCommandSpecs.cs" />
+    <Compile Include="Presentation\Model\Menu\File\ExitMenuItem.cs" />
+    <Compile Include="Presentation\Model\Menu\File\ExitMenuItemSpecs.cs" />
+    <Compile Include="Presentation\Model\Menu\File\FileMenu.cs" />
+    <Compile Include="Presentation\Model\Menu\File\FileMenuSpecs.cs" />
+    <Compile Include="Presentation\Model\Menu\File\NewMenuItem.cs" />
+    <Compile Include="Presentation\Model\Menu\File\NewMenuItemSpecs.cs" />
+    <Compile Include="Presentation\Model\Menu\File\SaveAsMenuItem.cs" />
+    <Compile Include="Presentation\Model\Menu\File\SaveAsMenuItemSpecs.cs" />
+    <Compile Include="Presentation\Model\Menu\File\SaveMenuItem.cs" />
+    <Compile Include="Presentation\Model\Menu\File\SaveMenuItemSpecs.cs" />
+    <Compile Include="Presentation\Model\Menu\Help\AboutMenuItem.cs" />
+    <Compile Include="Presentation\Model\Menu\Help\AboutMenuItemSpecs.cs" />
+    <Compile Include="Presentation\Model\Menu\Help\HelpMenu.cs" />
+    <Compile Include="Presentation\Model\Menu\Help\HelpMenuSpecs.cs" />
+    <Compile Include="Presentation\Model\Menu\IMenuItem.cs" />
+    <Compile Include="Presentation\Model\Menu\IMenuItemComparer.cs" />
+    <Compile Include="Presentation\Model\Menu\ISubMenuItemComparer.cs" />
+    <Compile Include="Presentation\Model\Menu\MenuNames.cs" />
+    <Compile Include="Infrastructure\Container\Windsor\IWindsorContainerFactory.cs" />
+    <Compile Include="Infrastructure\Core\ISpecification.cs" />
+    <Compile Include="Infrastructure\Extensions\ConversionExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\SpecificationExtensions.cs" />
+    <Compile Include="Infrastructure\Logging\ILogFactory.cs" />
+    <Compile Include="Infrastructure\Logging\ILogger.cs" />
+    <Compile Include="Infrastructure\Logging\Log.cs" />
+    <Compile Include="Infrastructure\Logging\Log4NetLogging\Log4NetLogger.cs" />
+    <Compile Include="Infrastructure\Logging\Log4NetLogging\Log4NetLogFactory.cs" />
+    <Compile Include="Infrastructure\Logging\LogSpecs.cs" />
+    <Compile Include="Presentation\Model\Menu\File\Commands\ISaveCommand.cs" />
+    <Compile Include="Presentation\Core\IPresenterRegistry.cs" />
+    <Compile Include="Presentation\Presenters\Menu\File\ISaveAsPresenter.cs" />
+    <Compile Include="Presentation\Presenters\Menu\File\SaveAsPresenterSpecs.cs" />
+    <Compile Include="Presentation\Presenters\Menu\Help\AboutApplicationPresenterSpecs.cs" />
+    <Compile Include="Presentation\Presenters\Menu\Help\IAboutApplicationPresenter.cs" />
+    <Compile Include="Presentation\Views\Menu\Help\AboutApplicationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Views\Menu\Help\AboutApplicationView.Designer.cs">
+      <DependentUpon>AboutApplicationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Menu\Help\IAboutApplicationView.cs" />
+    <Compile Include="Presentation\Views\Menu\Mappers\IMenuItemToToolStripMenuItemMapper.cs" />
+    <Compile Include="Presentation\Views\Menu\Mappers\ISubMenuToToolStripMenuItemMapper.cs" />
+    <Compile Include="Presentation\Views\Menu\File\ISaveAsView.cs" />
+    <Compile Include="Presentation\Views\Shell\WindowShell.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Views\Shell\WindowShell.Designer.cs">
+      <DependentUpon>WindowShell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Menu\Mappers\MenuItemToToolStripMenuItemMapperSpecs.cs" />
+    <Compile Include="Presentation\Views\Menu\Mappers\SubMenuToToolStripMenuItemMapper.cs" />
+    <Compile Include="Presentation\Views\Menu\Mappers\SubMenuToToolStripMenuItemMapperSpecs.cs" />
+    <Compile Include="Presentation\Context\NotepadApplicationContextSpecs.cs" />
+    <Compile Include="Presentation\Context\NotepadApplicationContext.cs" />
+    <Compile Include="Start.cs" />
+    <Compile Include="Presentation\Model\Menu\ISubMenu.cs" />
+    <Compile Include="Domain\Repositories\IRepository.cs" />
+    <Compile Include="Infrastructure\Container\DependencyResolutionException.cs" />
+    <Compile Include="Infrastructure\Container\Resolve.cs" />
+    <Compile Include="Infrastructure\Container\ResolveSpecs.cs" />
+    <Compile Include="Infrastructure\Container\Windsor\WindsorDependencyRegistry.cs" />
+    <Compile Include="Infrastructure\Container\Windsor\WindsorDependencyResolverSpecs.cs" />
+    <Compile Include="Infrastructure\Core\ICommand.cs" />
+    <Compile Include="Infrastructure\Core\IMapper.cs" />
+    <Compile Include="Infrastructure\Extensions\StringExtensions.cs" />
+    <Compile Include="Infrastructure\System\IApplicationEnvironment.cs" />
+    <Compile Include="Presentation\Model\Menu\File\Commands\ExitCommandSpecs.cs" />
+    <Compile Include="Presentation\Model\Menu\File\Commands\IExitCommand.cs" />
+    <Compile Include="Presentation\Core\ApplicationControllerSpecs.cs" />
+    <Compile Include="Presentation\Core\ApplicationController.cs" />
+    <Compile Include="Presentation\Core\IApplicationController.cs" />
+    <Compile Include="Presentation\Core\IPresenter.cs" />
+    <Compile Include="Infrastructure\Container\IDependencyRegistry.cs" />
+    <Compile Include="Presentation\Presenters\Menu\MainMenuPresenterSpecs.cs" />
+    <Compile Include="Presentation\Presenters\Shell\MainShellPresenterSpecs.cs" />
+    <Compile Include="Presentation\Presenters\Menu\IMainMenuPresenter.cs" />
+    <Compile Include="Presentation\Presenters\Shell\IMainShellPresenter.cs" />
+    <Compile Include="Presentation\Presenters\Shell\MainShellPresenter.cs" />
+    <Compile Include="Presentation\Views\Menu\IMainMenuView.cs" />
+    <Compile Include="Presentation\Views\Menu\MainMenuViewSpecs.cs" />
+    <Compile Include="Program.cs" />
+    <EmbeddedResource Include="Presentation\Views\Menu\Help\AboutApplicationView.resx">
+      <DependentUpon>AboutApplicationView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Views\Shell\WindowShell.resx">
+      <DependentUpon>WindowShell.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Tasks\IDocumentTasks.cs" />
+    <Compile Include="Tasks\Stubs\StubDocumentTasks.cs" />
+    <Compile Include="Test\Call.cs" />
+    <Compile Include="Test\Extensions\AssertionExtensions.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<project name="project.test">
+	<property name="test.output" value="${project.name}.test.dll" />
+	<property name="xunit.cons.exe" value="${build.tools.dir}\mbunit\mbunit.cons.exe" />
+	<!--<property name="xunit.cons.exe" value="${build.tools.dir}\gallio\gallio.echo.exe" />-->
+
+	<fileset id="test.references.fileset">
+		<include name="${build.lib.dir}\**\*.dll" />
+	</fileset>
+
+	<target name="test.compile" depends="init">
+		<csc output="${build.compile.dir}\${test.output}" target="library" debug="${debug}">
+			<sources basedir="${src.dir}">
+				<include name="**\*.cs" />
+			</sources>
+			<references refid="test.references.fileset"/>
+		</csc>
+	</target>
+
+	<target name="test.copy.dependencies">
+		<copy todir="${build.compile.dir}" flatten="true">
+			<fileset basedir="${build.lib.dir}">
+				<include name="\**\*.dll" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="test" depends="test.compile, test.copy.dependencies">
+		<exec program="${xunit.cons.exe}" commandline="${build.compile.dir}\${test.output} /sr /rt:text" />
+	</target>
+
+	<target name="test.html" depends="test.compile, test.copy.dependencies">
+		<exec program="${xunit.cons.exe}" commandline="${build.compile.dir}\${test.output} /sr /rt:html" />
+	</target>
+
+</project>

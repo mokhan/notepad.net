@@ -1,0 +1,59 @@
+<project name="notepad">	
+	<property name="project.name" value="${project::get-name()}" />
+
+	<property name="base.dir" value="${directory::get-parent-directory(project::get-base-directory())}" />
+	<property name="src.dir" value="${base.dir}\src" />
+	
+	<property name="build.dir" value="${base.dir}\build" />
+	<property name="build.tools.dir" value="${build.dir}\tools" />
+	<property name="build.lib.dir" value="${build.dir}\lib" />
+	<property name="build.config.dir" value="${build.dir}\config" />
+	<property name="build.compile.dir" value="${build.dir}\compile" />
+	
+	<property name="app.output" value="${project.name}.exe" />
+	
+	<include buildfile="project.test.build"/>
+	<include buildfile="project.deploy.build"/>
+	<include buildfile="local.properties.xml"/>
+		
+	<target name="clean">
+		<exec program="taskkill.exe" commandline="/f /im notepad.exe /FI &quot;STATUS eq RUNNING&quot;"  />
+		<delete dir="${build.compile.dir}" />
+	</target>
+	
+	<target name="init" depends="clean">
+		<mkdir dir="${build.compile.dir}" />
+		<mkdir dir="${log.dir}" />
+	</target>
+	
+	<target name="app.compile" depends="init">
+		<csc output="${build.compile.dir}\${app.output}" debug="${debug}" target="winexe">
+			<sources>
+				<include name="${src.dir}\**\*.cs" />
+				<include name="${build.config.dir}\**\*.cs" />
+				<exclude name="${src.dir}\**\AssemblyInfo.cs" />
+				<exclude name="${src.dir}\**\*Specs.cs" />
+				<exclude name="${src.dir}\Notepad\Test\**\*.*" />
+			</sources>
+			<references>
+				<include name="${build.lib.dir}\app\**\*.dll" />
+			</references>
+		</csc>
+	</target>
+
+	<target name="expand.template.file">
+		<copy file="${target}.template" tofile="${target}" overwrite="true">
+			<filterchain>
+				<replacetokens>
+					<token key="log.file.name" value="${log.file.name}" />
+					<token key="log.level" value="${log.level}" />
+					<token key="assembly.title" value="${assembly.title}" />
+					<token key="assembly.description" value="${assembly.description}" />
+					<token key="assembly.company" value="${assembly.company}" />
+					<token key="assembly.version" value="${assembly.version}" />
+				</replacetokens>
+			</filterchain>
+		</copy>
+	</target>
+	
+</project>
